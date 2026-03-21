@@ -99,5 +99,7 @@
         "compatibility": {}
       }
     ]
-  }
+  },
+   "manifest": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/blob/main/module.json",
+  "download": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/blob/main/wfrp4e-unofficial-compendium.zip",
 }
