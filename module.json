@@ -1,0 +1,103 @@
+{
+  "id": "wfrp4e-unofficial-compendium",
+  "title": "Fuskul's WFRP4e Unofficial Compendium",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "authors": [
+    {
+      "name": "Fuskul",
+      "flags": {}
+    }
+  ],
+  "scripts": [
+    "initialization.js",
+    "scripts/actor-type.js",
+    "scripts/careers.js",
+    "scripts/dark-elf-species.js",
+    "scripts/ice-magic.js",
+    "scripts/skaven-species.js"
+  ],
+    "styles": [
+  "styles/custom-styles.css"
+],
+  "packs": [
+    {
+      "name": "fuskul-journals",
+      "label": "Fuskul's Journals",
+      "path": "packs/fuskul-journals",
+      "type": "JournalEntry",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "wfrp4e"
+    },
+    {
+      "name": "fuskul-items",
+      "label": "Fuskul's Items",
+      "path": "packs/fuskul-items",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "wfrp4e"
+    },
+    {
+      "name": "fuskul-macros",
+      "label": "Fuskul's Macros",
+      "path": "packs/fuskul-macros",
+      "type": "Macro",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "wfrp4e"
+    },
+    {
+      "name": "fuskul-rolltables",
+      "label": "Fuskul's RollTables",
+      "path": "packs/fuskul-rolltables",
+      "type": "RollTable",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "wfrp4e"
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Fuskul's Compendium",
+      "sorting": "m",
+      "color": "#4a5a75",
+      "packs": [
+        "fuskul-journals",
+        "fuskul-items",
+        "fuskul-macros",
+        "fuskul-rolltables"
+      ]
+    }
+  ],
+  "flags": {
+    "canUpload": true,
+    "folder": {
+      "name": "Fuskul's Compendium",
+      "sorting": "m",
+      "color": "#4a5a75"
+    }
+  },
+
+  "relationships": {
+    "requires": [
+      {
+        "id": "wfrp4e-core",
+        "type": "module",
+        "compatibility": {}
+      }
+    ]
+  }
+}

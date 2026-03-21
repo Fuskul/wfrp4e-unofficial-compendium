@@ -1,0 +1,6 @@
+/* Цвет для школы магии Льда */
+.wfrp4e.actor.sheet section.tab[data-tab=magic] .lore.chosen.ice,
+.wfrp4e.actor.sheet section.tab[data-tab=magic] .progress-bar .fill.ice {
+  background-color: darkturquoise;
+  color: black;
+}
