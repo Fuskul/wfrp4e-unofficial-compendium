@@ -1,9 +1,9 @@
 Hooks.once("init", () => {
     
-    // 1. ЗАМЕНА КАРЬЕР С ПОМОЩЬЮ ОФИЦИАЛЬНОЙ УТИЛИТЫ СИСТЕМЫ
+    // 1. ЗАМЕНА КАРЬЕР 
     game.wfrp4e.utility.mergeCareerReplacements({
-        // Используем правильный системный ключ с дефисом!
         "human-kislevite": {
+            "Envoy": "Boyar Ambassador",
             "Priest": "Priest of Dazh",
             "Warrior Priest": ["Priest of Ursun", "Warrior Priest of Tor"],
             "Witch": "Ice Witch",
@@ -13,10 +13,7 @@ Hooks.once("init", () => {
             "Cavalryman": "Ungol Horse Archer"
         }
     });
-
-    // ==========================================
-    // 2. БЛАГОСЛОВЕНИЯ БОГОВ КИСЛЕВА
-    // ==========================================
+    // 2. БЛАГОСЛОВЕНИЯ БОГОВ
     const WFRP4E = game.wfrp4e.config;
     WFRP4E.godBlessings = WFRP4E.godBlessings || {};
     
