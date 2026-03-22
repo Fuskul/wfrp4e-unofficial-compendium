@@ -3,10 +3,10 @@ Hooks.once("init", () => {
     // 1. ЗАМЕНА КАРЬЕР 
     game.wfrp4e.utility.mergeCareerReplacements({
         "human-kislevite": {
-            "Envoy": "Boyar Ambassador",
+            "Envoy": "Gospodar Legate",
             "Priest": "Priest of Dazh",
             "Warrior Priest": ["Priest of Ursun", "Warrior Priest of Tor"],
-            "Witch": "Ice Witch",
+            "Witch": ["Ice Witch", "Necromancer"],
             "Witch Hunter": "Chekist",
             "Spy": "Chekist",
             "Wizard": "Ice Witch",
