@@ -1,5 +1,3 @@
-2026/03/21-21:46:43.430 ba5c Recovering log #43
-2026/03/21-21:46:43.431 ba5c Level-0 table #46: started
-2026/03/21-21:46:43.435 ba5c Level-0 table #46: 136635 bytes OK
-2026/03/21-21:46:43.444 ba5c Delete type=0 #43
-2026/03/21-21:46:43.444 ba5c Delete type=3 #41
+2026/03/24-01:44:31.619 48dc Recovering log #129
+2026/03/24-01:44:31.633 48dc Delete type=0 #129
+2026/03/24-01:44:31.633 48dc Delete type=3 #127
