@@ -16,13 +16,16 @@ Hooks.once("setup", () => {
     if (!newConditions["icechill"]) newConditions["icechill"] = "Chilled";
     game.wfrp4e.config.conditions = newConditions; 
     
-    game.wfrp4e.config.conditionDescriptions["icechill"] = "For each Chilled Condition you possess, you suffer a –10 penalty to Weapon Skill, Ballistic Skill, Strength, Agility, and Dexterity, and your Movement is reduced by 1 (to a minimum of 1).<br><br><b>Removing Chilled:</b> You may remove one Chilled Condition by spending an Action to pass an Athletics or Endurance Test. Gaining an Ablaze Condition removes Chilled on a 1-to-1 basis (and vice versa).";
-
-    if (!game.wfrp4e.config.loreEffects) game.wfrp4e.config.loreEffects = {};
-    
+    game.wfrp4e.config.conditionDescriptions["icechill"] = `
+<p>Your body freezes to the bone, your joints lose mobility, your muscles stiffen, and your reflexes dull.</p>
+<p>For each <strong>Chilled</strong> Condition you have, you suffer a -10 penalty to Weapon Skill, Ballistic Skill, Strength, Agility, and Dexterity Tests, and your Movement is reduced by 1 (to a minimum of 1). Chilled Conditions stack without limit. If any profile Characteristic is reduced to 0 by this Condition, you are physically incapable of performing Actions associated with it.</p>
+<p><strong>Removing Chilled Conditions</strong></p>
+<p><strong>Warming Up (Action):</strong> On your turn, you may spend an Action to rigorously rub your limbs and jump in place. Make a Challenging (+0) Athletics or Endurance Test. A success removes 1 Chilled Condition, plus 1 additional Condition for each +1 SL.</p>
+<p><strong>External Heat:</strong> Standing adjacent to an intense heat source or successfully consuming a measure of highly potent alcohol removes all Chilled Conditions. If you gain an <strong>Ablaze</strong> Condition, it immediately removes 1 Chilled Condition (the two Conditions cancel each other out).</p>
+`;
     game.wfrp4e.config.loreEffects["ice"] = {
         name: "Lore of Ice",
-        img: "modules/wfrp-4-enemy-within-ru/assets/icons/Lore-of-Ice.jpg",
+        img: "modules/wfrp4e-unofficial-compendium/assets/icons/Lore-of-Ice.jpg",
         flags: { wfrp4e: { lore: true } },
         system: {
             transferData: { type: "target" },
@@ -45,8 +48,8 @@ Hooks.once("setup", () => {
     let chillEffect = {
         id: "icechill", 
         name: "Chilled",
-        img: "modules/wfrp-4-enemy-within-ru/assets/icons/chilled.svg", 
-        icon: "modules/wfrp-4-enemy-within-ru/assets/icons/chilled.svg", 
+        img: "modules/wfrp4e-unofficial-compendium/assets/icons/chilled.svg", 
+        icon: "modules/wfrp4e-unofficial-compendium/assets/icons/chilled.svg", 
         statuses: ["icechill"], 
         flags: { wfrp4e: { condition: true, value: 1 } }, 
         system: {
@@ -85,12 +88,12 @@ Hooks.once("setup", () => {
         game.wfrp4e.config.statusEffects = game.wfrp4e.config.statusEffects.filter(e => e.id !== "chill");
     }
 
-    let proneIndex = CONFIG.statusEffects.findIndex(e => e.id === "prone");
+    let proneIndex = CONFIG.statusEffects.findIndex(e => e.id === "deafened");
     if (proneIndex !== -1) CONFIG.statusEffects.splice(proneIndex, 0, chillEffect);
     else CONFIG.statusEffects.push(chillEffect);
 
     if (game.wfrp4e?.config?.statusEffects) {
-        let wfrpProneIndex = game.wfrp4e.config.statusEffects.findIndex(e => e.id === "prone");
+        let wfrpProneIndex = game.wfrp4e.config.statusEffects.findIndex(e => e.id === "deafened");
         if (wfrpProneIndex !== -1) game.wfrp4e.config.statusEffects.splice(wfrpProneIndex, 0, chillEffect);
         else game.wfrp4e.config.statusEffects.push(chillEffect);
     }
