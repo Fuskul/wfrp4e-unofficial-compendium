@@ -1,3 +1,23 @@
-2026/03/27-10:56:27.477 c284 Recovering log #175
-2026/03/27-10:56:27.495 c284 Delete type=0 #175
-2026/03/27-10:56:27.495 c284 Delete type=3 #174
+2026/03/28-13:05:01.147 12ef4 Recovering log #177
+2026/03/28-13:05:01.149 12ef4 Level-0 table #179: started
+2026/03/28-13:05:01.153 12ef4 Level-0 table #179: 12586 bytes OK
+2026/03/28-13:05:01.168 12ef4 Delete type=0 #177
+2026/03/28-13:05:01.168 12ef4 Delete type=3 #176
+2026/03/28-19:19:30.589 1741c Level-0 table #182: started
+2026/03/28-19:19:30.589 1741c Level-0 table #182: 0 bytes OK
+2026/03/28-19:19:30.595 1741c Delete type=0 #180
+2026/03/28-19:19:30.616 1741c Manual compaction at level-0 from '!folders!4Ta6bUXOGrYJw1iJ' @ 72057594037927935 : 1 .. '!items.effects!yBuMbgHaMHh8KtbS.Hp0fg225PZix6EHp' @ 0 : 0; will stop at '!items.effects!iikNPMC3IWWULEdO.J1KNh5xlB4edrHFi' @ 1311 : 1
+2026/03/28-19:19:30.616 1741c Compacting 1@0 + 0@1 files
+2026/03/28-19:19:30.620 1741c Generated table #183@0: 5 keys, 10505 bytes
+2026/03/28-19:19:30.620 1741c Compacted 1@0 + 0@1 files => 10505 bytes
+2026/03/28-19:19:30.628 1741c compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/03/28-19:19:30.628 1741c Delete type=2 #179
+2026/03/28-19:19:30.645 1741c Manual compaction at level-0 from '!items.effects!iikNPMC3IWWULEdO.J1KNh5xlB4edrHFi' @ 1311 : 1 .. '!items.effects!yBuMbgHaMHh8KtbS.Hp0fg225PZix6EHp' @ 0 : 0; will stop at (end)
+2026/03/28-19:19:30.645 1741c Manual compaction at level-1 from '!folders!4Ta6bUXOGrYJw1iJ' @ 72057594037927935 : 1 .. '!items.effects!yBuMbgHaMHh8KtbS.Hp0fg225PZix6EHp' @ 0 : 0; will stop at '!items.effects!iikNPMC3IWWULEdO.J1KNh5xlB4edrHFi' @ 1311 : 1
+2026/03/28-19:19:30.645 1741c Compacting 1@1 + 1@2 files
+2026/03/28-19:19:30.654 1741c Generated table #184@1: 104 keys, 85223 bytes
+2026/03/28-19:19:30.654 1741c Compacted 1@1 + 1@2 files => 85223 bytes
+2026/03/28-19:19:30.657 1741c compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/03/28-19:19:30.657 1741c Delete type=2 #143
+2026/03/28-19:19:30.657 1741c Delete type=2 #183
+2026/03/28-19:19:30.677 1741c Manual compaction at level-1 from '!items.effects!iikNPMC3IWWULEdO.J1KNh5xlB4edrHFi' @ 1311 : 1 .. '!items.effects!yBuMbgHaMHh8KtbS.Hp0fg225PZix6EHp' @ 0 : 0; will stop at (end)
