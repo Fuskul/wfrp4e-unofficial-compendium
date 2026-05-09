@@ -37,7 +37,7 @@ Hooks.on("init", () => {
     WFRP4E.speciesHeight["delf"] = { feet: 6, inches: 0, die: "1d10" };
 
     // --- ЗАГРУЗКА ИМЁН ---
-    const modulePath = "modules/wfrp-4-enemy-within-ru/names";
+    const modulePath = "modules/wfrp4e-unofficial-compendium/names";
     
     if (!game.wfrp4e.names) {
         game.wfrp4e.names = {};

@@ -10,7 +10,7 @@ const getIconForType = (type) => {
         "party": "fa-users",
         "loot": "fa-gem"
     };
-    return icons[type.toLowerCase()] || "fa-id-badge"; // Default icon if type is unknown
+    return icons[type.toLowerCase()] || "fa-id-badge"; 
 };
 
 const changeActorTypeOption = {
@@ -35,7 +35,6 @@ const changeActorTypeOption = {
 
     const originalTypeLocalised = localiseActorType(actor.type);
     
-    // Gather available types (excluding current) and generate HTML cards
     const availableTypes = Object.keys(CONFIG.Actor.dataModels)
       .filter((t) => t !== actor.type)
       .sort((a, b) => localiseActorType(a).localeCompare(localiseActorType(b)));
@@ -46,62 +45,114 @@ const changeActorTypeOption = {
     }
 
     const optionsHtml = availableTypes.map((t, index) => {
-        const isChecked = index === 0 ? "checked" : ""; // Select the first element by default
+        const isChecked = index === 0 ? "checked" : ""; 
         return `
-        <label class="type-label">
+        <label class="grim-type-row">
             <input type="radio" name="convert-type" value="${t}" ${isChecked}>
-            <div class="type-card">
-                <i class="fas ${getIconForType(t)} type-icon"></i>
-                <div class="type-name">${localiseActorType(t)}</div>
+            <div class="row-content">
+                <i class="fas ${getIconForType(t)}"></i>
+                <span>${localiseActorType(t)}</span>
             </div>
         </label>`;
     }).join("");
 
     const content = `
       <style>
-        .change-type-app { font-family: var(--font-primary); color: var(--color-text-light-highlight); }
-        .change-type-app .current-type { 
-            text-align: center; background: rgba(0,0,0,0.2); padding: 8px; 
-            border: 1px solid var(--color-border-dark-tertiary); border-radius: 4px; margin-bottom: 12px;
+        .grim-change-type {
+            font-family: 'CaslonAntique', serif;
+            padding: 5px 0;
         }
-        .change-type-app .type-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px;
+        .grim-change-type .current-status {
+            background: rgba(15, 15, 15, 0.8);
+            border: 1px solid #3d2b2b;
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #c9bda8;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
         }
-        .change-type-app .type-label { cursor: pointer; margin: 0; }
-        .change-type-app .type-label input[type="radio"] { display: none; }
-        .change-type-app .type-card {
-            border: 1px solid var(--color-border-light-tertiary);
-            border-radius: 5px; background: rgba(0, 0, 0, 0.1);
-            padding: 15px 5px; text-align: center; transition: all 0.2s ease;
-            height: 100%; box-sizing: border-box;
+        .grim-change-type .current-status strong {
+            color: #a83232;
+            font-size: 1.15em;
+            letter-spacing: 0.5px;
         }
-        .change-type-app .type-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 0 5px var(--color-shadow-primary);
+        .grim-change-type .types-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 260px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
-        .change-type-app .type-label input[type="radio"]:checked + .type-card {
-            background: rgba(40, 40, 90, 0.4);
-            border-color: var(--color-border-highlight);
-            box-shadow: 0 0 8px var(--color-shadow-highlight);
+        /* Custom Scrollbar */
+        .grim-change-type .types-container::-webkit-scrollbar { width: 5px; }
+        .grim-change-type .types-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        .grim-change-type .types-container::-webkit-scrollbar-thumb { background: #4a3e31; border-radius: 3px; }
+        
+        .grim-change-type .grim-type-row {
+            cursor: pointer;
+            margin: 0;
+            display: block;
         }
-        .change-type-app .type-icon { font-size: 1.8rem; margin-bottom: 8px; color: #a99a86; transition: color 0.2s;}
-        .change-type-app .type-label input[type="radio"]:checked + .type-card .type-icon { color: var(--color-text-highlight); }
-        .change-type-app .type-name { font-size: 0.95em; font-weight: bold; line-height: 1.1; }
+        .grim-change-type .grim-type-row input {
+            display: none;
+        }
+        .grim-change-type .row-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #4a3e31;
+            border-radius: 4px;
+            color: #b5a48b;
+            font-size: 1.1em;
+            transition: all 0.2s ease;
+        }
+        .grim-change-type .row-content i {
+            font-size: 1.1em;
+            width: 24px;
+            text-align: center;
+            color: #5c4d3c;
+            transition: color 0.2s ease;
+        }
+        .grim-change-type .grim-type-row:hover .row-content {
+            background: rgba(40, 20, 20, 0.6);
+            border-color: #8a3434;
+            color: #e6d8c3;
+        }
+        .grim-change-type .grim-type-row:hover .row-content i {
+            color: #a83232;
+        }
+        .grim-change-type .grim-type-row input:checked + .row-content {
+            background: rgba(60, 15, 15, 0.8);
+            border-color: #a83232;
+            color: #ffffff;
+            box-shadow: 0 0 8px rgba(168, 50, 50, 0.4);
+        }
+        .grim-change-type .grim-type-row input:checked + .row-content i {
+            color: #ff5252;
+            text-shadow: 0 0 5px rgba(255, 82, 82, 0.5);
+        }
       </style>
       
-      <div class="change-type-app">
-        <div class="current-type">
-          Current type: <strong>${originalTypeLocalised}</strong>
+      <div class="grim-change-type">
+        <div class="current-status">
+          Current type: <br><strong>${originalTypeLocalised}</strong>
         </div>
-        <div style="text-align: center; margin-bottom: 10px; font-size: 0.9em; color: #999;">Select a new actor type:</div>
-        <div class="type-grid">
+        <div class="types-container">
           ${optionsHtml}
         </div>
       </div>
     `;
 
     const convertType = await foundry.applications.api.DialogV2.prompt({
-      window: { title: "Change Actor Type", width: 400 },
+      window: { 
+        title: "Change Actor Type", 
+        width: 320, 
+        icon: "fas fa-exchange-alt" 
+      },
       content: content,
       ok: {
         icon: '<i class="fas fa-check"></i>',
@@ -116,7 +167,11 @@ const changeActorTypeOption = {
 
     if (convertType) {
       try {
-        await actor.update({ type: convertType, system: actor.system }, { recursive: false });
+        // ИСПРАВЛЕНИЕ ДЛЯ V14: 
+        // Мы передаем только { type: convertType }. 
+        // Модель данных Foundry сама отфильтрует старые поля и сгенерирует новые по умолчанию, 
+        // сохранив все универсальные характеристики (например, stats).
+        await actor.update({ type: convertType });
         ui.notifications.info(`Actor type successfully changed to ${localiseActorType(convertType)}`);
       } catch (e) {
         console.error("Error updating actor type:", e);
@@ -126,7 +181,6 @@ const changeActorTypeOption = {
   }
 };
 
-// Hook for Foundry V13
 Hooks.on("getActorContextOptions", (application, menuItems) => {
   menuItems.push(changeActorTypeOption);
 });

@@ -4,13 +4,13 @@ Hooks.once("setup", () => {
     
     game.wfrp4e.config.loreEffectDescriptions["ice"] = "You inflict 1 @Condition[Chilled] Condition on any target successfully affected by a spell from the Lore of Ice. A target may only ever have a single @Condition[Chilled] Condition gained in this manner at any one time.<br>For every @Condition[Chilled] Condition currently affecting any creature within a number of yards equal to your Willpower Bonus, you gain a +10 bonus to your Channelling (Ice) and Language (Magick) Tests.";
 
-    // --- CLEANUP 1: Remove old "chill" and insert "icechill" ---
+    // --- CLEANUP 1: Возвращаем твой старый надежный метод сортировки ---
     const oldConditions = game.wfrp4e.config.conditions;
     const newConditions = {};
     
     for (let key in oldConditions) {
-        if (key === "chill") continue; // Удаляем старый статус из системы
-        if (key === "prone") newConditions["icechill"] = "Chilled";
+        if (key === "chill") continue; 
+        if (key === "prone") newConditions["icechill"] = "Chilled"; 
         newConditions[key] = oldConditions[key];
     }
     if (!newConditions["icechill"]) newConditions["icechill"] = "Chilled";
@@ -23,6 +23,8 @@ Hooks.once("setup", () => {
 <p><strong>Warming Up (Action):</strong> On your turn, you may spend an Action to rigorously rub your limbs and jump in place. Make a Challenging (+0) Athletics or Endurance Test. A success removes 1 Chilled Condition, plus 1 additional Condition for each +1 SL.</p>
 <p><strong>External Heat:</strong> Standing adjacent to an intense heat source or successfully consuming a measure of highly potent alcohol removes all Chilled Conditions. If you gain an <strong>Ablaze</strong> Condition, it immediately removes 1 Chilled Condition (the two Conditions cancel each other out).</p>
 `;
+
+    // ИСПРАВЛЕНИЕ КНОПКИ: Добавлены await перед addCondition и setFlag
     game.wfrp4e.config.loreEffects["ice"] = {
         name: "Lore of Ice",
         img: "modules/wfrp4e-unofficial-compendium/assets/icons/Lore-of-Ice.jpg",
@@ -36,8 +38,8 @@ Hooks.once("setup", () => {
                     let hasIceMagic = this.actor.itemTypes.talent.some(i => i.name.includes("Arcane Magic (Ice)"));
                     let hasLoreChill = this.actor.getFlag("wfrp4e", "loreIceChill");
                     if (!hasIceMagic && !hasLoreChill) {
-                        this.actor.addCondition("icechill");
-                        this.actor.setFlag("wfrp4e", "loreIceChill", true);
+                        await this.actor.addCondition("icechill");
+                        await this.actor.setFlag("wfrp4e", "loreIceChill", true);
                     }
                 `,
                 options: { deleteEffect: true }
@@ -45,7 +47,7 @@ Hooks.once("setup", () => {
         }
     };
 
-    let chillEffect = {
+let chillEffect = {
         id: "icechill", 
         name: "Chilled",
         img: "modules/wfrp4e-unofficial-compendium/assets/icons/chilled.svg", 
@@ -57,16 +59,17 @@ Hooks.once("setup", () => {
             scriptData: [
                 {
                     label: "Chilled Penalties",
-                    trigger: "prepareData", 
+                    // ИСПРАВЛЕНИЕ 1: Меняем триггер. Теперь штраф накладывается ДО того, как посчитаются навыки
+                    trigger: "prePrepareData", 
                     script: `
                         let stacks = this.effect.conditionValue || this.effect.system?.condition?.value || 1; 
                         let penalty = stacks * -10;
                         let stats = ["ws", "bs", "s", "ag", "dex"];
                         
                         for (let stat of stats) {
+                            // ИСПРАВЛЕНИЕ 2: Модифицируем только modifier. 
+                            // Система сама безопасно пересчитает value и спустит его в навыки
                             this.actor.system.characteristics[stat].modifier += penalty;
-                            this.actor.system.characteristics[stat].value += penalty;
-                            if (this.actor.system.characteristics[stat].value < 0) this.actor.system.characteristics[stat].value = 0;
                         }
                         
                         this.actor.system.details.move.value -= stacks;
@@ -191,7 +194,8 @@ Hooks.on("preUpdateActiveEffect", (effect, changes, options, userId) => {
                 
                 ui.notifications.info(`Additional stacks neutralized!`);
                 if (actualNewAblazeVal <= 0) {
-                    effect.delete();
+                    // ИСПРАВЛЕНИЕ ДЛЯ V14: Безопасное удаление после завершения хука
+                    setTimeout(() => effect.delete(), 0);
                     return false;
                 }
             }
@@ -214,7 +218,8 @@ Hooks.on("preUpdateActiveEffect", (effect, changes, options, userId) => {
                 
                 ui.notifications.info(`Additional stacks neutralized!`);
                 if (actualNewChillVal <= 0) {
-                    effect.delete();
+                    // ИСПРАВЛЕНИЕ ДЛЯ V14: Безопасное удаление после завершения хука
+                    setTimeout(() => effect.delete(), 0);
                     return false;
                 }
             }
@@ -239,8 +244,7 @@ Hooks.on("wfrp4e:preRollTest", (testData) => {
     let targets = canvas.tokens.placeables.filter(t => t.id !== token.id && t.actor);
     
     for (let t of targets) {
-        let distanceInPixels = Math.hypot(token.center.x - t.center.x, token.center.y - t.center.y);
-        let distanceInYards = (distanceInPixels / canvas.grid.size) * canvas.scene.grid.distance;
+        let distanceInYards = canvas.grid.measurePath([{x: token.center.x, y: token.center.y}, {x: t.center.x, y: t.center.y}]).distance;
         
         if (distanceInYards <= wpb) {
             let chillCondition = t.actor.effects.find(e => e.statuses?.has("icechill") || e.name === "Chilled");
