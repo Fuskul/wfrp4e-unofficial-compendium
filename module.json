@@ -1,7 +1,7 @@
 {
   "id": "wfrp4e-unofficial-compendium",
   "title": "Fuskul's WFRP4e Unofficial Compendium",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -14,6 +14,31 @@
       "flags": {}
     }
   ],
+  "relationships": {
+    "requires": [
+      {
+        "id": "wfrp4e-core",
+        "type": "module",
+        "compatibility": {}
+      }
+    ]
+  },
+  "documentTypes": {
+    "ChatMessage": {
+      "bloodgift": {}
+    },
+    "Item": {
+      "bloodgift": {}
+    }
+  },
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    }
+  ],
   "scripts": [
     "initialization.js",
     "scripts/actor-type.js",
@@ -21,7 +46,9 @@
     "scripts/dark-elf-species.js",
     "scripts/ice-magic.js",
     "scripts/skaven-species.js",
-    "scripts/polymorph.js"
+    "scripts/vampire-species.js",
+    "scripts/polymorph.js",
+    "scripts/bloodgift.js"
   ],
   "styles": [
     {
@@ -38,7 +65,8 @@
       "ownership": {
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
-      }
+      },
+      "flags": {}
     },
     {
       "name": "fuskul-items",
@@ -49,7 +77,8 @@
       "ownership": {
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
-      }
+      },
+      "flags": {}
     },
     {
       "name": "fuskul-macros",
@@ -60,7 +89,8 @@
       "ownership": {
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
-      }
+      },
+      "flags": {}
     },
     {
       "name": "fuskul-rolltables",
@@ -71,7 +101,8 @@
       "ownership": {
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
-      }
+      },
+      "flags": {}
     },
     {
       "name": "fuskul-actors",
@@ -82,7 +113,8 @@
       "ownership": {
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
-      }
+      },
+      "flags": {}
     }
   ],
   "packFolders": [
@@ -108,16 +140,8 @@
       "color": "#4a5a75"
     }
   },
-  "relationships": {
-    "requires": [
-      {
-        "id": "wfrp4e-core",
-        "type": "module",
-        "compatibility": {}
-      }
-    ]
-  },
-  "manifest": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.2.0/module.json",
-  "download": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.2.0/wfrp4e-unofficial-compendium.zip",
+  "manifest": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.3.0/module.json",
+  "download": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.3.0/wfrp4e-unofficial-compendium.zip",
+  "url": "https://github.com/Fuskul/wfrp4e-unofficial-compendium",
   "description": ""
 }

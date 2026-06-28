@@ -1,3 +1,8 @@
-2026/05/08-17:11:16.817 6458 Recovering log #541
-2026/05/08-17:11:16.831 6458 Delete type=0 #541
-2026/05/08-17:11:16.832 6458 Delete type=3 #539
+2026/06/28-01:25:01.306 b250 Recovering log #897
+2026/06/28-01:25:01.320 b250 Delete type=0 #897
+2026/06/28-01:25:01.320 b250 Delete type=3 #895
+2026/06/28-01:28:51.761 cdf8 Level-0 table #902: started
+2026/06/28-01:28:51.761 cdf8 Level-0 table #902: 0 bytes OK
+2026/06/28-01:28:51.768 cdf8 Delete type=0 #900
+2026/06/28-01:28:51.769 cdf8 Manual compaction at level-0 from '!folders!4l2hlmAxJgEVzNV3' @ 72057594037927935 : 1 .. '!macros!rbNSDDGZ2yjTAgWT' @ 0 : 0; will stop at (end)
+2026/06/28-01:28:51.769 cdf8 Manual compaction at level-1 from '!folders!4l2hlmAxJgEVzNV3' @ 72057594037927935 : 1 .. '!macros!rbNSDDGZ2yjTAgWT' @ 0 : 0; will stop at (end)

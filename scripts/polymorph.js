@@ -204,14 +204,16 @@ Hooks.on("renderTokenHUD", (hud, html, tokenData) => {
 
   const isPolymorphed = actor.getFlag("wfrp4e-unofficial-compendium", "isPolymorphed");
 
-  const icon = isPolymorphed ? "fa-user" : "fa-paw";
+  // ИЗМЕНЕНИЕ ИКОНКИ:
+  // "fa-frog" — классическая жаба для полиморфа. 
+  // Если хочешь дракона, напиши "fa-dragon". Для возврата лапки — "fa-paw".
+  const icon = isPolymorphed ? "fa-user" : "fa-frog";
   const title = isPolymorphed ? "Revert Form" : "Polymorph";
 
-  const btnHtml = `
-    <div class="control-icon polymorph-action" title="${title}">
-      <i class="fas ${icon}"></i>
-    </div>
-  `;
+  // ЖЕЛЕЗОБЕТОННОЕ ЦЕНТРИРОВАНИЕ:
+  // Добавлен style="display: flex; align-items: center; justify-content: center;" для кнопки
+  // и жесткий размер font-size: 20px; для самой иконки. Теперь она никуда не съедет.
+  const btnHtml = `<div class="control-icon polymorph-action" data-tooltip="${title}" style="display: flex; align-items: center; justify-content: center;"><i class="fas ${icon}" style="font-size: 20px; margin: 0; padding: 0;"></i></div>`;
 
   const element = (html instanceof jQuery) ? html[0] : html;
   const rightCol = element.querySelector(".col.right");

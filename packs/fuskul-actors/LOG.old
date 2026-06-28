@@ -1,3 +1,8 @@
-2026/05/08-17:11:16.877 f220 Recovering log #457
-2026/05/08-17:11:16.892 f220 Delete type=0 #457
-2026/05/08-17:11:16.892 f220 Delete type=3 #455
+2026/06/28-01:25:01.340 b1d8 Recovering log #807
+2026/06/28-01:25:01.355 b1d8 Delete type=0 #807
+2026/06/28-01:25:01.355 b1d8 Delete type=3 #805
+2026/06/28-01:28:51.799 cdf8 Level-0 table #812: started
+2026/06/28-01:28:51.799 cdf8 Level-0 table #812: 0 bytes OK
+2026/06/28-01:28:51.806 cdf8 Delete type=0 #810
+2026/06/28-01:28:51.806 cdf8 Manual compaction at level-0 from '!actors!8gszP9pQuVot69iA' @ 72057594037927935 : 1 .. '!folders!Mbd9yv3uFvBDXLai' @ 0 : 0; will stop at (end)
+2026/06/28-01:28:51.806 cdf8 Manual compaction at level-1 from '!actors!8gszP9pQuVot69iA' @ 72057594037927935 : 1 .. '!folders!Mbd9yv3uFvBDXLai' @ 0 : 0; will stop at (end)

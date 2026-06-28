@@ -36,13 +36,14 @@ Hooks.on("init", () => {
     WFRP4E.speciesAge["delf"] = "10d10 + 30";
     WFRP4E.speciesHeight["delf"] = { feet: 6, inches: 0, die: "1d10" };
 
-    // --- ЗАГРУЗКА ИМЁН ---
+// --- ЗАГРУЗКА ИМЁН ---
     const modulePath = "modules/wfrp4e-unofficial-compendium/names";
     
     if (!game.wfrp4e.names) {
         game.wfrp4e.names = {};
     }
 
+    // Загружаем компоненты личного имени
     fetch(`${modulePath}/dark_elf_start.txt`).then(r => r.text()).then(nameText => {
         game.wfrp4e.names.delf_start = nameText.split(/\r?\n/).filter(i => i.trim()).map(i => [i.trim()]);
     });
@@ -52,21 +53,32 @@ Hooks.on("init", () => {
     fetch(`${modulePath}/dark_elf_end.txt`).then(r => r.text()).then(nameText => {
         game.wfrp4e.names.delf_end = nameText.split(/\r?\n/).filter(i => i.trim()).map(i => [i.trim()]);
     });
-    fetch(`${modulePath}/dark_elf_surnames.txt`).then(r => r.text()).then(nameText => {
-        game.wfrp4e.names.delf_surnames = nameText.split(/\r?\n/).filter(i => i.trim()).map(i => [i.trim()]);
+
+    // Загружаем компоненты Воинского Имени (Фамилии)
+    fetch(`${modulePath}/dark_elf_surname_prefix.txt`).then(r => r.text()).then(nameText => {
+        game.wfrp4e.names.delf_surname_prefix = nameText.split(/\r?\n/).filter(i => i.trim()).map(i => [i.trim()]);
+    });
+    fetch(`${modulePath}/dark_elf_surname_suffix.txt`).then(r => r.text()).then(nameText => {
+        game.wfrp4e.names.delf_surname_suffix = nameText.split(/\r?\n/).filter(i => i.trim()).map(i => [i.trim()]);
     });
 
     game.wfrp4e.names.delf = {
         forename() {
             let start = game.wfrp4e.names.RollArray("delf_start") || "";
+            // 50% шанс, что имя будет из 3 частей, и 50% - что из 2
             let connector = Math.random() > 0.5 ? (game.wfrp4e.names.RollArray("delf_connectors") || "") : "";
             let end = game.wfrp4e.names.RollArray("delf_end") || "";
             let name = start + connector + end;
             return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
         },
         surname() {
-            let sur = game.wfrp4e.names.RollArray("delf_surnames") || "";
-            return sur.charAt(0).toUpperCase() + sur.slice(1).toLowerCase();
+            let prefix = game.wfrp4e.names.RollArray("delf_surname_prefix") || "";
+            let suffix = game.wfrp4e.names.RollArray("delf_surname_suffix") || "";
+            
+            // Склеиваем слова (например: Red + blade = Redblade)
+            // И оборачиваем в одинарные кавычки по правилам лора
+            let warriorName = prefix + suffix.toLowerCase();
+            return `'${warriorName}'`;
         }
     };
 });
