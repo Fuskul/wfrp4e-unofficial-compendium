@@ -4,3 +4,214 @@
   background-color: darkturquoise;
   color: black;
 }
+
+/* ============================================================
+   Vampire / Dark Elf sheet themes.
+   Root class applied by scripts/vampire-sheet.js and
+   scripts/delf-sheet.js, which register dedicated sheet
+   subclasses the same way the Dwarf/High Elf companion modules
+   do (confirmed by inspecting their real dwarf.css / helf.css:
+   root selector is .application.wfrp4e.actor.<species>).
+   No external texture assets available here, so the "carved
+   border" look those two modules get from a bitmap border-image
+   is instead approximated with pure CSS: gradients, layered
+   shadows, and small hand-authored inline SVG corner ornaments.
+
+   The base WFRP4e sheet templates assume a light parchment
+   background and set their own (dark) text colours on labels,
+   table cells, etc. Darkening the sheet background means all of
+   that text needs to be forced light too, with !important, since
+   we can't out-specificity every system rule individually - the
+   blanket ".window-content *" rule below handles that; the more
+   specific rules after it add the coloured accents on top.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cinzel+Decorative:wght@700&display=swap');
+
+/* ---------- Vampire: gothic red/black ---------- */
+.application.wfrp4e.actor.vampire:not(.no-theme) {
+  --vamp-red: #8c0014;
+  --vamp-red-bright: #d8262f;
+  --vamp-text: #e9dcdc;
+  --vamp-text-dim: #b99a9c;
+  background: linear-gradient(160deg, #1a0509 0%, #0c0304 55%, #170508 100%);
+  border: none;
+  box-shadow: 0 0 26px rgba(140, 0, 20, 0.45);
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-header {
+  background: linear-gradient(180deg, #2a0509, #0c0203);
+  border-bottom: 2px solid var(--vamp-red);
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-header .window-title {
+  font-family: "UnifrakturMaguntia", serif;
+  color: var(--vamp-red-bright);
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(216, 38, 47, 0.7);
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-header .header-control {
+  filter: drop-shadow(0 0 3px var(--vamp-red));
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content {
+  background:
+    radial-gradient(ellipse at top, rgba(80, 10, 16, 0.35), transparent 70%),
+    #170709;
+  border: 3px double var(--vamp-red);
+  border-radius: 2px;
+  box-shadow: inset 0 0 34px rgba(0, 0, 0, 0.75);
+  padding: 28px 24px;
+  position: relative;
+  color: var(--vamp-text);
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content::before,
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M2 2 L18 2 L18 6 L6 6 L6 18 L2 18 Z' fill='%238c0014'/><circle cx='10' cy='10' r='2.4' fill='%23d8262f'/><path d='M4 22 L4 30 M4 30 L1 26 M4 30 L7 26' stroke='%238c0014' stroke-width='1.5' fill='none'/></svg>");
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content::before { top: 4px; left: 4px; }
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content::after  { bottom: 4px; right: 4px; transform: rotate(180deg); }
+
+/* Blanket readability fix - the stock templates assume light-parchment-on-dark-text */
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content,
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content * {
+  color: var(--vamp-text) !important;
+  border-color: #5a1a20 !important;
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content input,
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content select,
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content textarea {
+  color: #f5eaea !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content ::placeholder {
+  color: var(--vamp-text-dim) !important;
+}
+/* Labels / secondary text a shade dimmer so primary values still stand out */
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content label,
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content .label,
+.application.wfrp4e.actor.vampire:not(.no-theme) .window-content small {
+  color: var(--vamp-text-dim) !important;
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .charname,
+.application.wfrp4e.actor.vampire:not(.no-theme) .actor-name {
+  font-family: "UnifrakturMaguntia", serif;
+  color: var(--vamp-red-bright) !important;
+  text-shadow: 0 0 8px rgba(216, 38, 47, 0.5);
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .tabs .item,
+.application.wfrp4e.actor.vampire:not(.no-theme) nav.tabs a {
+  border-color: var(--vamp-red) !important;
+  color: var(--vamp-text-dim) !important;
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .tabs .item.active,
+.application.wfrp4e.actor.vampire:not(.no-theme) nav.tabs a.active {
+  background-color: #4a0d13 !important;
+  color: #f2c9cc !important;
+  text-shadow: 0 0 4px rgba(216, 38, 47, 0.6);
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) .progress-bar .fill {
+  background-color: var(--vamp-red) !important;
+}
+.application.wfrp4e.actor.vampire:not(.no-theme) table th {
+  color: var(--vamp-red-bright) !important;
+}
+
+/* ---------- Dark Elf: purple/silver, cold and angular ---------- */
+.application.wfrp4e.actor.delf:not(.no-theme) {
+  --delf-violet: #4a3d6b;
+  --delf-violet-bright: #ad9bf0;
+  --delf-text: #e4e1f2;
+  --delf-text-dim: #b0a8d0;
+  background: linear-gradient(160deg, #120f1e 0%, #0a0916 55%, #14101f 100%);
+  border: none;
+  box-shadow: 0 0 22px rgba(120, 90, 200, 0.3);
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .window-header {
+  background: linear-gradient(180deg, #211a35, #0e0c18);
+  border-bottom: 2px solid var(--delf-violet);
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .window-header .window-title {
+  font-family: "Cinzel Decorative", serif;
+  color: var(--delf-violet-bright);
+  letter-spacing: 1px;
+  text-shadow: 0 0 6px rgba(150, 130, 220, 0.7);
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .window-header .header-control {
+  filter: drop-shadow(0 0 3px var(--delf-violet));
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content {
+  background:
+    radial-gradient(ellipse at top, rgba(90, 70, 160, 0.28), transparent 70%),
+    #100d1c;
+  border: 3px solid var(--delf-violet);
+  border-radius: 0;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7);
+  padding: 28px 24px;
+  position: relative;
+  color: var(--delf-text);
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content::before,
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 1 L20 12 L31 16 L20 20 L16 31 L12 20 L1 16 L12 12 Z' fill='none' stroke='%239a86e0' stroke-width='1.4'/><circle cx='16' cy='16' r='2' fill='%239a86e0'/></svg>");
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content::before { top: 4px; left: 4px; }
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content::after  { bottom: 4px; right: 4px; transform: rotate(180deg); }
+
+/* Blanket readability fix - the stock templates assume light-parchment-on-dark-text */
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content,
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content * {
+  color: var(--delf-text) !important;
+  border-color: #3a3060 !important;
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content input,
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content select,
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content textarea {
+  color: #f0eef8 !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content ::placeholder {
+  color: var(--delf-text-dim) !important;
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content label,
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content .label,
+.application.wfrp4e.actor.delf:not(.no-theme) .window-content small {
+  color: var(--delf-text-dim) !important;
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .charname,
+.application.wfrp4e.actor.delf:not(.no-theme) .actor-name {
+  font-family: "Cinzel Decorative", serif;
+  color: var(--delf-violet-bright) !important;
+  text-shadow: 0 0 6px rgba(150, 130, 220, 0.5);
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .tabs .item,
+.application.wfrp4e.actor.delf:not(.no-theme) nav.tabs a {
+  border-color: var(--delf-violet) !important;
+  color: var(--delf-text-dim) !important;
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .tabs .item.active,
+.application.wfrp4e.actor.delf:not(.no-theme) nav.tabs a.active {
+  background-color: #362a5c !important;
+  color: #e6e2f5 !important;
+  text-shadow: 0 0 4px rgba(150, 130, 220, 0.6);
+}
+.application.wfrp4e.actor.delf:not(.no-theme) .progress-bar .fill {
+  background-color: var(--delf-violet-bright) !important;
+}
+.application.wfrp4e.actor.delf:not(.no-theme) table th {
+  color: var(--delf-violet-bright) !important;
+}

@@ -1,7 +1,7 @@
 {
   "id": "wfrp4e-unofficial-compendium",
   "title": "Fuskul's WFRP4e Unofficial Compendium",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -48,7 +48,9 @@
     "scripts/skaven-species.js",
     "scripts/vampire-species.js",
     "scripts/polymorph.js",
-    "scripts/bloodgift.js"
+    "scripts/bloodgift.js",
+    "scripts/vampire-sheet.js",
+    "scripts/delf-sheet.js"
   ],
   "styles": [
     {
@@ -140,8 +142,8 @@
       "color": "#4a5a75"
     }
   },
-  "manifest": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.3.0/module.json",
-  "download": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.3.0/wfrp4e-unofficial-compendium.zip",
+  "manifest": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.4.0/module.json",
+  "download": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.4.0/wfrp4e-unofficial-compendium.zip",
   "url": "https://github.com/Fuskul/wfrp4e-unofficial-compendium",
   "description": ""
 }
