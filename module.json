@@ -45,12 +45,14 @@
     "scripts/careers.js",
     "scripts/dark-elf-species.js",
     "scripts/ice-magic.js",
+    "scripts/hag-magic.js",
     "scripts/skaven-species.js",
     "scripts/vampire-species.js",
     "scripts/polymorph.js",
     "scripts/bloodgift.js",
     "scripts/vampire-sheet.js",
-    "scripts/delf-sheet.js"
+    "scripts/delf-sheet.js",
+    "scripts/token-effect-icons.js"
   ],
   "styles": [
     {
