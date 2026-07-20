@@ -1,7 +1,7 @@
 {
   "id": "wfrp4e-unofficial-compendium",
   "title": "Fuskul's WFRP4e Unofficial Compendium",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -52,11 +52,17 @@
     "scripts/bloodgift.js",
     "scripts/vampire-sheet.js",
     "scripts/delf-sheet.js",
-    "scripts/token-effect-icons.js"
+    "scripts/token-effect-icons.js",
+    "scripts/container-storage.js",
+    "scripts/inventory-ui.js",
+    "scripts/career-completion.js"
   ],
   "styles": [
     {
       "src": "styles/custom-styles.css"
+    },
+    {
+      "src": "styles/inventory-ui.css"
     }
   ],
   "packs": [
@@ -144,8 +150,8 @@
       "color": "#4a5a75"
     }
   },
-  "manifest": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.4.0/module.json",
-  "download": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.4.0/wfrp4e-unofficial-compendium.zip",
+  "manifest": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.5.0/module.json",
+  "download": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.5.0/wfrp4e-unofficial-compendium.zip",
   "url": "https://github.com/Fuskul/wfrp4e-unofficial-compendium",
   "description": ""
 }

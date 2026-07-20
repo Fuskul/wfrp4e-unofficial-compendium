@@ -1,0 +1,239 @@
+/* ============================================================================
+   Redesigned inventory + container UI (paired with scripts/inventory-ui.js).
+   Scoped under .wuc-inventory (Trappings tab) or .wuc-container (container item
+   window). Only layout / spacing set here; text + border COLOURS are inherited
+   from the sheet (and forced by the Vampire / Dark-Elf themes with !important),
+   so everything stays readable on the light parchment sheet and the dark themes
+   alike. The tab section's own show/hide is left entirely to the system so the
+   inventory tab never bleeds under the other tabs.
+   ============================================================================ */
+
+.wuc-inventory {
+    --wuc-line: rgba(0, 0, 0, 0.14);
+    --wuc-hover: rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- toolbar: search + filter pills ---------- */
+.wuc-inventory .wuc-inv-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px 7px;
+    margin: 2px 0 2px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--wuc-line);
+}
+
+/* search field: no background fill, matches the plain underlined text fields
+   in the sheet header */
+.wuc-inventory .wuc-inv-search {
+    flex: 1 1 150px;
+    min-width: 110px;
+    height: 20px;
+    padding: 0 4px;
+    color: #2b2118;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--wuc-line);
+    border-radius: 0;
+    box-shadow: none;
+}
+.wuc-inventory .wuc-inv-search::placeholder {
+    color: rgba(60, 45, 30, 0.5);
+}
+.wuc-inventory .wuc-inv-search:focus {
+    outline: none;
+    border-bottom-color: currentColor;
+}
+
+/* filter pills styled like the sheet's tab buttons: text only, no fill,
+   the active one underlined */
+.wuc-inventory .wuc-inv-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 8px;
+}
+.wuc-inventory .wuc-inv-pill {
+    padding: 2px 3px;
+    min-height: 0;
+    height: auto;
+    font-family: inherit;
+    font-size: 0.9em;
+    line-height: 1.1;
+    white-space: nowrap;
+    color: #4a3a28;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    cursor: pointer;
+    transition: color 0.12s ease, border-color 0.12s ease;
+}
+.wuc-inventory .wuc-inv-pill:hover {
+    color: #1a1206;
+}
+.wuc-inventory .wuc-inv-pill.active {
+    color: #7a1f1f;
+    font-weight: 700;
+    border-bottom-color: currentColor;
+}
+
+/* ---------- scroll region (max-height is set from JS, pinned to the window) - */
+.wuc-inventory .wuc-inv-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+}
+.wuc-inventory .wuc-inv-scroll .sheet-list {
+    margin-bottom: 8px;
+}
+
+/* client-side collapse caret, placed INSIDE the name cell so it never shifts
+   the header's column grid out of alignment with the rows below */
+.wuc-inventory .list-header[data-wuc-collapsible] {
+    cursor: pointer;
+}
+.wuc-inventory .list-header[data-wuc-collapsible] .list-name::before {
+    content: "\25BE";
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 10px;
+    opacity: 0.7;
+    transition: transform 0.15s ease;
+}
+.wuc-inventory .sheet-list.wuc-collapsed .list-header[data-wuc-collapsible] .list-name::before {
+    transform: rotate(-90deg);
+}
+.wuc-inventory .sheet-list.wuc-collapsed .list-content {
+    display: none;
+}
+
+/* ---------- item rows (light touch: don't fight the system grid) ---------- */
+.wuc-inventory .sheet-list .list-row {
+    transition: background-color 0.1s ease;
+}
+.wuc-inventory .sheet-list .list-row:hover {
+    background: var(--wuc-hover);
+}
+.wuc-inventory .sheet-list .small {
+    font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================================
+   Container item window
+   ============================================================================ */
+
+/* Capacity bar reusing the system's .encumbrance-section markup; these rules are
+   a fallback so it looks like the character-sheet Encumbrance bar even if the
+   system's own styling doesn't reach the item window. */
+.wuc-container .encumbrance-section.wuc-capacity {
+    margin-top: 6px;
+}
+.wuc-container .encumbrance-section.wuc-capacity .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+.wuc-container .encumbrance-section.wuc-capacity .counter {
+    display: flex;
+    gap: 3px;
+    font-variant-numeric: tabular-nums;
+}
+.wuc-container .encumbrance-section.wuc-capacity .bar {
+    height: 8px;
+    min-width: 2px;
+    border-radius: 4px;
+    margin-top: 3px;
+    background: #5b8a2b;
+}
+.wuc-container .encumbrance-section.wuc-capacity .bar.none { background: #5b8a2b; }
+.wuc-container .encumbrance-section.wuc-capacity .bar.partial { background: #c9a227; }
+.wuc-container .encumbrance-section.wuc-capacity .bar.high { background: #c8781f; }
+.wuc-container .encumbrance-section.wuc-capacity .bar.max { background: #a52121; }
+
+.wuc-container .wuc-container-contents {
+    margin: 6px 0 10px;
+    border-radius: 4px;
+}
+.wuc-container .wuc-container-contents.drop-hover {
+    outline: 2px dashed #7a1f1f;
+    outline-offset: 2px;
+    background: rgba(122, 31, 31, 0.06);
+}
+.wuc-container .wuc-contents-empty {
+    padding: 8px 4px;
+    opacity: 0.6;
+    font-style: italic;
+    text-align: center;
+}
+.wuc-container .wuc-contents-title {
+    margin: 0 0 4px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    padding-bottom: 3px;
+}
+.wuc-container .wuc-contents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.wuc-container .wuc-contents-row {
+    display: grid;
+    grid-template-columns: 22px 1fr auto auto auto;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+.wuc-container .wuc-contents-row:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+.wuc-container .wuc-contents-row .clickable {
+    cursor: pointer;
+}
+.wuc-container .wuc-contents-remove {
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 0 2px;
+}
+.wuc-container .wuc-contents-remove:hover {
+    opacity: 1;
+}
+.wuc-container .wuc-contents-row img {
+    width: 22px;
+    height: 22px;
+    object-fit: cover;
+    border: none;
+    border-radius: 3px;
+}
+.wuc-container .wuc-contents-qty,
+.wuc-container .wuc-contents-enc {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.85;
+    font-size: 12px;
+}
+
+/* ============================================================================
+   Career completion readout (career-completion.js)
+   ============================================================================ */
+.wuc-career-status {
+    font-size: 11px;
+    line-height: 1.4;
+    padding: 3px 8px;
+    margin: 2px 0;
+    color: #4a3a28;
+    background: rgba(0, 0, 0, 0.05);
+    border-left: 3px solid #7a1f1f;
+    border-radius: 2px;
+}
+.wuc-career-status.complete {
+    border-left-color: #5b8a2b;
+}
+.wuc-career-status .wuc-cs-title,
+.wuc-career-status b {
+    font-weight: 700;
+}
+.wuc-container .wuc-contents-row.is-container .wuc-contents-name {
+    font-weight: 600;
+}

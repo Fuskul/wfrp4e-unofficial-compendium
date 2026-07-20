@@ -1,0 +1,28 @@
+# ---- Copyrighted source books / large binaries — never publish ----
+wfrp/
+
+# ---- Local backups ----
+backups/
+packs_backup_*/
+
+# ---- Development scratch / reference dumps (not part of the module) ----
+*_src.txt
+*_dump.json
+scripts_getter.txt
+sample_script1.txt
+sample_scripts2.txt
+sample_scripts*.txt
+script_helpers.txt
+opposed_samples.txt
+targeted_sample.txt
+warhammerscript.txt
+applybasicdamage.txt
+addcondition_src.txt
+
+# ---- OS / editor cruft ----
+Thumbs.db
+.DS_Store
+*.log
+
+# ---- Foundry LevelDB runtime lock files ----
+**/LOCK
