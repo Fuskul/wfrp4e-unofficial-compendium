@@ -1,7 +1,7 @@
 {
   "id": "wfrp4e-unofficial-compendium",
   "title": "Fuskul's WFRP4e Unofficial Compendium",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -150,8 +150,8 @@
       "color": "#4a5a75"
     }
   },
-  "manifest": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.5.0/module.json",
-  "download": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.5.0/wfrp4e-unofficial-compendium.zip",
+  "manifest": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.5.1/module.json",
+  "download": "https://github.com/Fuskul/wfrp4e-unofficial-compendium/releases/download/v1.5.1/wfrp4e-unofficial-compendium.zip",
   "url": "https://github.com/Fuskul/wfrp4e-unofficial-compendium",
   "description": ""
 }

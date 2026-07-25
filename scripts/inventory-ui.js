@@ -107,7 +107,7 @@ function enhanceInventoryTab(sheet) {
 
     const state = getTabState(sheet, "inventory");
     buildToolbar(sheet, tab, sections, state);
-    installScrollRegion(sheet, root, tab, sections);
+    installScrollRegion(sheet, root, tab, sections, "inventory");
     setupCollapsibleSections(sections);
     applyListFilter(sections, state);
 }
@@ -154,8 +154,10 @@ function enhanceMagicTab(sheet) {
     }
 
     const state = getTabState(sheet, "magic");
+    const sections = [...tab.querySelectorAll(".sheet-list")];
     buildMagicToolbar(sheet, tab, rows, rowWinds, present, state);
-    setupCollapsibleSections([...tab.querySelectorAll(".sheet-list")]);
+    if (sections.length) installScrollRegion(sheet, root, tab, sections, "magic");
+    setupCollapsibleSections(sections);
     applyMagicFilter(tab, rows, rowWinds, state);
 }
 
@@ -293,7 +295,7 @@ function buildToolbar(sheet, tab, sections, state) {
  * pinned to the sheet window, so the list scrolls while the encumbrance bar and
  * the toolbar stay fixed on top. Independent of the system's own layout.
  */
-function installScrollRegion(sheet, root, tab, sections) {
+function installScrollRegion(sheet, root, tab, sections, key) {
     tab.querySelector(".wuc-inv-scroll")?.remove();
 
     const scroll = document.createElement("div");
@@ -315,11 +317,19 @@ function installScrollRegion(sheet, root, tab, sections) {
 
     // Recompute on window resize AND when the tab is shown/hidden (observing the
     // tab makes the height correct even if the sheet opened on another tab).
-    sheet._wucResizeObserver?.disconnect();
+    sheet._wucRO ??= {};
+    sheet._wucRO[key]?.disconnect();
     const ro = new ResizeObserver(() => recompute());
     ro.observe(windowContent);
     ro.observe(tab);
-    sheet._wucResizeObserver = ro;
+    sheet._wucRO[key] = ro;
+
+    // Preserve the scroll position across the sheet's frequent full re-renders
+    // (otherwise every edit jumps the list back to the top).
+    sheet._wucScroll ??= {};
+    scroll.addEventListener("scroll", () => { sheet._wucScroll[key] = scroll.scrollTop; });
+    const saved = sheet._wucScroll[key];
+    if (saved) requestAnimationFrame(() => { if (scroll.isConnected) scroll.scrollTop = saved; });
 }
 
 /** Search-by-name + one-category filter pill (shared by inventory & magic). */

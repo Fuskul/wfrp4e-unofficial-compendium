@@ -1,3 +1,8 @@
-2026/07/20-14:49:07.900 a8a0 Recovering log #1077
-2026/07/20-14:49:07.915 a8a0 Delete type=0 #1077
-2026/07/20-14:49:07.915 a8a0 Delete type=3 #1075
+2026/07/25-14:25:13.404 30ec Recovering log #1108
+2026/07/25-14:25:13.419 30ec Delete type=0 #1108
+2026/07/25-14:25:13.419 30ec Delete type=3 #1107
+2026/07/25-15:06:36.129 9dac Level-0 table #1112: started
+2026/07/25-15:06:36.129 9dac Level-0 table #1112: 0 bytes OK
+2026/07/25-15:06:36.133 9dac Delete type=0 #1110
+2026/07/25-15:06:36.133 9dac Manual compaction at level-0 from '!folders!4Ta6bUXOGrYJw1iJ' @ 72057594037927935 : 1 .. '!items.effects!zP9pmJ3hjbolR7Zq.8fnCZz1hciaU6HHw' @ 0 : 0; will stop at (end)
+2026/07/25-15:06:36.133 9dac Manual compaction at level-1 from '!folders!4Ta6bUXOGrYJw1iJ' @ 72057594037927935 : 1 .. '!items.effects!zP9pmJ3hjbolR7Zq.8fnCZz1hciaU6HHw' @ 0 : 0; will stop at (end)

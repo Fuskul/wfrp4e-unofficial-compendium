@@ -1,14 +1,23 @@
 // token-effect-icons.js
-// Adds "On the Defensive", "Invisible" and "Blind" to the token status-effect
-// HUD palette (the grid of clickable icons on the token) so they can be toggled
-// straight from the token, like the Ice module adds "Chilled".
+// Adds "On the Defensive", "Invisible" and "Blind" to the TOKEN status-effect HUD
+// palette (the grid of clickable icons on the token) — WITHOUT listing them in the
+// character sheet's conditions column.
 //
-// Crucially, each palette entry is built ON TOP OF the real WFRP4e "system effect"
-// (the one from the sheet's "Select Effect" dropdown), so it keeps that effect's
-// behaviour — e.g. "On the Defensive" still prompts you to choose a defence skill.
-// We only add an id, a status and (for On the Defensive) a custom icon.
+// Why the ready hook and CONFIG.statusEffects only:
+//   WFRP4e (wfrp4e.js) does `CONFIG.statusEffects = game.wfrp4e.config.statusEffects`
+//   in its own "ready" hook, so both arrays are the SAME reference. The token HUD
+//   reads CONFIG.statusEffects; the sheet's conditions column (_getConditionData)
+//   reads game.wfrp4e.config.statusEffects. If we pushed to that shared array the
+//   icons would also clutter the sheet. So we run AFTER WFRP4e's ready hook and
+//   REPLACE CONFIG.statusEffects with a new array (base + ours), leaving
+//   game.wfrp4e.config.statusEffects untouched.
+//
+// These are plain (non-numbered) status effects, so WFRP4e's toggleStatusEffect
+// falls back to Foundry's core toggle: click to apply, click again to remove.
+// Each entry is cloned from the matching system effect, so its behaviour is kept
+// (e.g. "On the Defensive" still prompts for a defence skill on apply).
 
-Hooks.once("setup", () => {
+Hooks.once("ready", () => {
     const cfg = game.wfrp4e?.config;
     if (!cfg) {
         console.error("WFRP4e | token-effect-icons: system config not found — cannot add token icons.");
@@ -24,50 +33,52 @@ Hooks.once("setup", () => {
     ];
 
     const systemEffects = cfg.systemEffects ?? {};
+    const extra = [];
 
     for (const m of MARKERS) {
-        // 1) Grab the real system effect (carries the skill-selection script, etc.).
+        // Reuse the real system effect so its behaviour (scriptData) is preserved.
         const source = Object.values(systemEffects).find(e => e?.name === m.name);
         if (!source) {
-            console.warn(`WFRP4e | token-effect-icons: system effect "${m.name}" not found — adding a plain marker instead.`);
+            console.warn(`WFRP4e | token-effect-icons: system effect "${m.name}" not found — plain marker used.`);
         }
 
-        // 2) Register condition metadata so WFRP4e renders it in the HUD palette.
-        cfg.conditions ??= {};
-        cfg.conditions[m.id] = m.name;
-        cfg.conditionDescriptions ??= {};
-        cfg.conditionDescriptions[m.id] ??= `<p><strong>${m.name}</strong></p>`;
-
-        // 3) Build the palette entry from a clone of the system effect (keeps its
-        //    scriptData / transferData), then layer our own fields on top.
         const base = source ? foundry.utils.deepClone(source) : {};
-        const statuses = new Set(base.statuses ?? []);
-        statuses.add(m.id);
-
         const statusEffect = foundry.utils.mergeObject(base, {
             id: m.id,
             _id: m._id,
             name: m.name,
             img: m.img,
             icon: m.img, // older-API compatibility
-            statuses: Array.from(statuses),
-            flags: { wfrp4e: { condition: true, value: null } }
+            statuses: [m.id]
         });
-        // Non-numbered toggle (no stacking counter), without wiping any scriptData.
-        statusEffect.system ??= {};
-        statusEffect.system.condition = foundry.utils.mergeObject(
-            statusEffect.system.condition ?? {}, { numbered: false }
-        );
 
-        // 4) Register in both palettes, replacing any existing entry with the same id.
-        const keep = e => e.id !== m.id;
+        // Not a numbered condition -> WFRP4e uses core toggle (add on click, remove
+        // on next click). This also keeps it out of the sheet's numbered-condition UI.
+        foundry.utils.setProperty(statusEffect, "system.condition.numbered", false);
+        foundry.utils.setProperty(statusEffect, "flags.wfrp4e.condition", false);
 
-        CONFIG.statusEffects = CONFIG.statusEffects.filter(keep);
-        CONFIG.statusEffects.push(statusEffect);
+        extra.push(statusEffect);
+    }
 
-        if (Array.isArray(cfg.statusEffects)) {
-            cfg.statusEffects = cfg.statusEffects.filter(keep);
-            cfg.statusEffects.push(statusEffect);
-        }
+    // Add ONLY to CONFIG.statusEffects (token HUD). Do NOT touch
+    // game.wfrp4e.config.statusEffects (character-sheet conditions column).
+    const ourIds = new Set(MARKERS.map(m => m.id));
+    CONFIG.statusEffects = CONFIG.statusEffects.filter(e => !ourIds.has(e.id)).concat(extra);
+
+    // --- Keep "Dead" visible on the character sheet ---
+    // WFRP4e's sheet (_getConditionData) always DROPS the LAST entry of
+    // game.wfrp4e.config.statusEffects (the base list's last entry is "dead").
+    // Append a hidden spacer — same minimal shape as a base entry, NO _id — so the
+    // sacrifice hits the spacer instead of "Dead". This affects only the sheet list,
+    // not the token HUD (which now uses its own CONFIG.statusEffects array above).
+    const sheetList = cfg.statusEffects;
+    if (Array.isArray(sheetList) && sheetList.length && sheetList[sheetList.length - 1]?.id !== "fuskspacer") {
+        // Clone the current last entry (valid schema, incl. a defined name) and only
+        // change its id/statuses. Do NOT set _id. It becomes the throwaway last.
+        const spacer = foundry.utils.deepClone(sheetList[sheetList.length - 1]);
+        delete spacer._id;
+        spacer.id = "fuskspacer";
+        spacer.statuses = ["fuskspacer"];
+        sheetList.push(spacer);
     }
 });

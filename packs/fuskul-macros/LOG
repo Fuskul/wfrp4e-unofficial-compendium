@@ -1,3 +1,8 @@
-2026/07/20-14:49:07.920 3bc8 Recovering log #1059
-2026/07/20-14:49:07.935 3bc8 Delete type=0 #1059
-2026/07/20-14:49:07.935 3bc8 Delete type=3 #1057
+2026/07/25-14:25:13.425 4124 Recovering log #1090
+2026/07/25-14:25:13.439 4124 Delete type=0 #1090
+2026/07/25-14:25:13.439 4124 Delete type=3 #1089
+2026/07/25-15:06:36.140 9dac Level-0 table #1094: started
+2026/07/25-15:06:36.140 9dac Level-0 table #1094: 0 bytes OK
+2026/07/25-15:06:36.144 9dac Delete type=0 #1092
+2026/07/25-15:06:36.152 9dac Manual compaction at level-0 from '!folders!4l2hlmAxJgEVzNV3' @ 72057594037927935 : 1 .. '!macros!rbNSDDGZ2yjTAgWT' @ 0 : 0; will stop at (end)
+2026/07/25-15:06:36.152 9dac Manual compaction at level-1 from '!folders!4l2hlmAxJgEVzNV3' @ 72057594037927935 : 1 .. '!macros!rbNSDDGZ2yjTAgWT' @ 0 : 0; will stop at (end)
