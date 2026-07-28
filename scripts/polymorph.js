@@ -665,10 +665,17 @@ function attachDropInterceptor(sheet, html) {
 
   root.addEventListener("drop", async (event) => {
     if (!Wfrp4ePolymorph.canTransform(actor)) return;
+
+    // Let WFRP's native systems handle their own actor-drop zones. The Combat
+    // tab's mount slot (".mount-drop") sets a mount rather than transforming —
+    // don't hijack it. Only actor drops elsewhere on the sheet trigger a
+    // transformation. (".container-drop" is item-only, but excluded for safety.)
+    if (event.target?.closest?.(".mount-drop, .container-drop")) return;
+
     const data = getDragData(event);
     if (!data || data.type !== "Actor" || !data.uuid) return;
 
-    // This is an Actor drop — take it over.
+    // This is an Actor drop outside any handled zone — take it over.
     event.preventDefault();
     event.stopImmediatePropagation();
 
