@@ -1,7 +1,3 @@
-2026/07/25-14:25:13.441 ff4 Recovering log #1059
-2026/07/25-14:25:13.455 ff4 Delete type=0 #1059
-2026/07/25-14:25:13.455 ff4 Delete type=3 #1058
-2026/07/25-15:06:36.148 9dac Level-0 table #1063: started
-2026/07/25-15:06:36.148 9dac Level-0 table #1063: 0 bytes OK
-2026/07/25-15:06:36.152 9dac Delete type=0 #1061
-2026/07/25-15:06:36.152 9dac Manual compaction at level-0 from '!tables!GKsEwqu0L5tAtxBP' @ 72057594037927935 : 1 .. '!tables.results!GKsEwqu0L5tAtxBP.vd4i3KHY7THAxj6h' @ 0 : 0; will stop at (end)
+2026/10/09-18:21:06.456954 7fa729fbe6c0 Recovering log #4
+2026/10/09-18:21:06.458453 7fa729fbe6c0 Delete type=3 #2
+2026/10/09-18:21:06.458771 7fa729fbe6c0 Delete type=0 #4

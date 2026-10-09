@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3b0606"/>
+      <stop offset="100%" stop-color="#0d0202"/>
+    </linearGradient>
+    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d9d9e3"/>
+      <stop offset="100%" stop-color="#7d7d8f"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="14" fill="url(#bg)"/>
+  <path d="M64 10 L74 70 L64 84 L54 70 Z" fill="url(#blade)" stroke="#2a0a0a" stroke-width="2"/>
+  <path d="M56 46 L64 40 L72 46" fill="none" stroke="#8a1010" stroke-width="3"/>
+  <rect x="40" y="82" width="48" height="8" rx="3" fill="#6b1212"/>
+  <path d="M40 86 C30 80 28 70 34 64" fill="none" stroke="#6b1212" stroke-width="5" stroke-linecap="round"/>
+  <path d="M88 86 C98 80 100 70 94 64" fill="none" stroke="#6b1212" stroke-width="5" stroke-linecap="round"/>
+  <rect x="59" y="90" width="10" height="22" rx="3" fill="#2b0a0a" stroke="#6b1212" stroke-width="2"/>
+  <circle cx="64" cy="116" r="5" fill="#a81515"/>
+  <path d="M70 60 C72 66 70 70 66 72 C70 76 70 82 66 88" fill="none" stroke="#c41a1a" stroke-width="3" stroke-linecap="round"/>
+</svg>
