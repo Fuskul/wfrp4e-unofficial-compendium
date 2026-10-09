@@ -25,6 +25,14 @@ The module adds a wealth of new content, with a special focus on **Kislev**, alo
 * **Dark Elves:** A species with its own characteristics, skills, and a built-in, lore-friendly name generator.
 * **Themed Character Sheets:** Vampire and Dark Elf actor sheets pick up their own visual theme automatically — gothic red-and-black for Vampires, cold purple-and-silver for Dark Elves — no extra setup required.
 
+### 🖤 Temple of Spite — Dark Elves of the Black Ark *(new in 1.6.0)*
+* **Lore of Dark Magic:** All 24 spells, with automation where it makes sense (magic missiles, armour-ignoring damage, Fatigued/Broken/Entangled riders, Power of Darkness buffs, Word of Pain penalties, Soul Stealer drain…). Dark Magic rules are automated: every Miscast becomes Major unless the caster has *Instinctive Diction*, ingredients don't help, an 8 on the units die causes a Major Miscast and a Corruption point, and casting more than +4 SL over the CN links the new **Dark Magic Complications** table.
+* **Talents:** *Soul Pact* (with all Sorceress Pacts) and *Gifts of Khaine* — each Gift as its own talent, with roll-dialog toggles for Touch of Khaine, Dance of Doom and Dagger of Khaine.
+* **Druchii Equipment:** Spineblade, Soultaker, Vambrace Blades, Net, Repeater Crossbow & Handbow, Reaper Bolt Thrower, Sky Reaper, Ravager Harpoon, Sea Dragon Cloak, Druchii armour, and the poisons and draughts (Manbane, Sildru, Valikh, Vrasha, Zha'Kheril, Hushalta, Barvalk, Witchbrew) with applicable effects. New qualities: *Slash* and *Barbed Bolt*.
+* **Templates:** All 17 Druchii NPC templates as system Template items — drop one onto a base profile to build a warrior, corsair, shade, assassin, sorceress, witch elf and more.
+* **Actors (67):** Base dark elf profiles, Druchii Anointed, Doomfire Warlock, 20 ready-made Druchii (Bleaksword, Darkshard, Cold One Knight, Reaver Captain, Witch Elf, Supreme Sorceress…), beasts and mounts (Dark Steed, Dark Pegasus, Cold One, Kharibdyss, War Hydra, Harpy, Helldrakes, Sea Dragon), all of the book's named NPCs, and the dark elf ships and chariots as vehicles.
+* **Core Sync:** NPCs carry light copies of Core talents, traits and spells; on import they are swapped for the full `wfrp4e-core` items (toggle in settings, plus a *Sync Actors with WFRP4e Core* macro for already-imported actors).
+
 ### 🧙‍♂️ New Playable Species & Subspecies
 * **Skaven:** Fully automated species with clan selection (Eshin, Pestilens, Moulder, Skryre, Mors, Rictus, Mange). Each clan grants unique skills and talents.
 * **Abundant Subspecies:** Added specific origins for Humans (Kislevite, Arabyan, Strigany, Border Princes), Dwarfs (Karak Kadrin, Karak Norn, etc.), and High Elves (Chrace).
@@ -57,6 +65,7 @@ The new quality-of-life features can be toggled under **Configure Settings → F
 | Redesigned inventory | Per-player | On |
 | Magic tab: wind filters | Per-player | On |
 | Auto-complete careers | World (GM) | On |
+| Sync NPC items with WFRP4e Core on import | World (GM) | On |
 
 Changes apply the next time a sheet is opened.
 
