@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="14" fill="#16241a"/>
+  <rect x="5" y="5" width="118" height="118" rx="11" fill="none" stroke="#7fb87f" stroke-width="2" opacity="0.5"/>
+  <path d="M64 24 L90 64 L64 104 L38 64 Z" fill="none" stroke="#7fb87f" stroke-width="5"/><path d="M64 44 L64 84" stroke="#7fb87f" stroke-width="5"/>
+  <text x="110" y="120" text-anchor="end" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#7fb87f">III</text>
+</svg>

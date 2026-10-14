@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="14" fill="#0f2830"/>
+  <rect x="5" y="5" width="118" height="118" rx="11" fill="none" stroke="#5fb6c4" stroke-width="2" opacity="0.5"/>
+  <path d="M36 92 L92 36 M44 36 L92 84" stroke="#5fb6c4" stroke-width="7" stroke-linecap="round"/><path d="M30 98 C50 108 78 108 98 98" stroke="#5fb6c4" stroke-width="5" fill="none"/>
+  <text x="110" y="120" text-anchor="end" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#5fb6c4">IV</text>
+</svg>

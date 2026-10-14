@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="14" fill="#2a1f14"/>
+  <rect x="5" y="5" width="118" height="118" rx="11" fill="none" stroke="#c89a6a" stroke-width="2" opacity="0.5"/>
+  <circle cx="64" cy="64" r="28" fill="none" stroke="#c89a6a" stroke-width="5"/><path d="M64 44 L64 84 M54 52 C70 48 76 58 64 64 C52 70 58 80 74 76" stroke="#c89a6a" stroke-width="4" fill="none"/>
+  <text x="110" y="120" text-anchor="end" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#c89a6a">IV</text>
+</svg>

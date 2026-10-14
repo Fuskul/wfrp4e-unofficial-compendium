@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="14" fill="#2a0d0d"/>
+  <rect x="5" y="5" width="118" height="118" rx="11" fill="none" stroke="#d05050" stroke-width="2" opacity="0.5"/>
+  <path d="M44 104 L76 40" stroke="#d05050" stroke-width="7" stroke-linecap="round"/><path d="M66 28 C88 28 98 44 92 62 L72 50 Z" fill="#d05050"/>
+  <text x="110" y="120" text-anchor="end" font-family="Georgia, serif" font-size="20" font-weight="bold" fill="#d05050">I</text>
+</svg>

@@ -33,6 +33,10 @@ The module adds a wealth of new content, with a special focus on **Kislev**, alo
 * **Actors (67):** Base dark elf profiles, Druchii Anointed, Doomfire Warlock, 20 ready-made Druchii (Bleaksword, Darkshard, Cold One Knight, Reaver Captain, Witch Elf, Supreme Sorceress…), beasts and mounts (Dark Steed, Dark Pegasus, Cold One, Kharibdyss, War Hydra, Harpy, Helldrakes, Sea Dragon), all of the book's named NPCs, and the dark elf ships and chariots as vehicles.
 * **Core Sync:** NPCs carry light copies of Core talents, traits and spells; on import they are swapped for the full `wfrp4e-core` items (toggle in settings, plus a *Sync Actors with WFRP4e Core* macro for already-imported actors).
 
+### 🗡️ Druchii Careers *(new in 1.7.0)*
+* **16 four-level careers for Dark Elves:** Druchii Sorceress, Corsair, Witch Elf, Druchii Warrior, Executioner, Cold One Knight, Shade, Dark Rider, Druchii Beastmaster, Khainite Assassin, Highborn, Disciple of Khaine, Factor, Druchii Servant, Glass Thorn Agent and Doomfire Warlock — each with a journal page in *Fuskul's Journals › Careers › Naggaroth*.
+* **Character Creation support:** the Dark Elf species now rolls on its own d100 career table (*Career - Dark Elf*), read straight from the compendium — no import needed.
+
 ### 🧙‍♂️ New Playable Species & Subspecies
 * **Skaven:** Fully automated species with clan selection (Eshin, Pestilens, Moulder, Skryre, Mors, Rictus, Mange). Each clan grants unique skills and talents.
 * **Abundant Subspecies:** Added specific origins for Humans (Kislevite, Arabyan, Strigany, Border Princes), Dwarfs (Karak Kadrin, Karak Norn, etc.), and High Elves (Chrace).
